@@ -1,7 +1,8 @@
+/* eslint-disable new-cap */
+/* eslint-disable no-bitwise */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs';
 import crypto from 'crypto';
-import bignum from 'bignum';
 import bencode from 'bencode';
 
 const BLOCK_LEN = 2 ** 14;
@@ -13,11 +14,20 @@ const size = (torrent: any) => {
         .map((file: string | any[]) => file.length)
         .reduce((a: any, b: any) => a + b)
     : torrent.info.length;
-  return bignum.toBuffer(dataSize, { size: 8, endian: 'big' });
+  const Buf = new Buffer.alloc(4);
+  Buf[0] = (dataSize >> 24) & 0xff;
+  Buf[1] = (dataSize >> 16) & 0xff;
+  Buf[2] = (dataSize >> 8) & 0xff;
+  Buf[3] = dataSize & 0xff;
+  return Buf;
 };
 
 const pieceLen = (torrent: any, pieceIndex: number): number => {
-  const totalLength = bignum.fromBuffer(size(torrent)).toNumber();
+  const totalLength = torrent.info.files
+    ? torrent.info.files
+        .map((file: string | any[]) => file.length)
+        .reduce((a: any, b: any) => a + b)
+    : torrent.info.length;
   const pieceLength = torrent.info['piece length'];
 
   const lastPieceLength = totalLength % pieceLength;

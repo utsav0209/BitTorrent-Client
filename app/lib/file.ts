@@ -4,8 +4,8 @@ import path from 'path';
 import progress from 'cli-progress';
 import parseTorrent from 'parse-torrent';
 
-const TORRENTS_PATH = '../test/torrents/';
-const DOWNLOADS_PATH = '../test/test-downloads';
+const TORRENTS_PATH = './test/torrents/';
+const DOWNLOADS_PATH = './test/test-downloads';
 
 const dataSpeed: number[] = [];
 const fileList: number[] = [];
