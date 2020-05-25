@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs';
 import crypto from 'crypto';
 import bignum from 'bignum';
@@ -7,7 +6,6 @@ import bencode from 'bencode';
 const BLOCK_LEN = 2 ** 14;
 
 const size = (torrent: any) => {
-  // ...
   const dataSize = torrent.info.files
     ? torrent.info.files
         .map((file: string | any[]) => file.length)

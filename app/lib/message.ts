@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Buffer } from 'buffer';
 import * as torrentParser from './torrent-parser';
 import * as util from './util';

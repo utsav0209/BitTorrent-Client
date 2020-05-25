@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
 import dgram from 'dgram';
 import { Buffer } from 'buffer';
 import { parse as urlParse } from 'url';
